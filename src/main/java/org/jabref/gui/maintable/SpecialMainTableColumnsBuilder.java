@@ -118,7 +118,7 @@ class SpecialMainTableColumnsBuilder {
                     }
                 }
 
-                return null;
+                return new JLabel(IconTheme.JabRefIcon.SEARCH.getSmallIcon());
             }
         };
     }
