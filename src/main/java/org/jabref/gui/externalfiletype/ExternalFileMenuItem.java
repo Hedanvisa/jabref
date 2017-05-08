@@ -57,7 +57,7 @@ public class ExternalFileMenuItem extends JMenuItem implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boolean success = openLink();
         if (!success) {
-            frame.output(Localization.lang("Unable to open link Opa."));
+            frame.output(Localization.lang("Unable to open link."));
             entry.clearField(FieldName.FILE);
             System.out.println("Tentando apagar link");
         }

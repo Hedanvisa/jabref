@@ -187,6 +187,10 @@ public class RightClickMenu extends JPopupMenu implements PopupMenuListener {
 
         add(frame.getMassSetField());
 
+        GeneralAction deattachFileAction = new GeneralAction(Actions.REMOVE_FILE_LINK, Localization.lang("Deattach file"),
+                IconTheme.JabRefIcon.ATTACH_FILE.getSmallIcon());
+        add(deattachFileAction);
+        
         GeneralAction attachFileAction = new GeneralAction(Actions.ADD_FILE_LINK, Localization.lang("Attach file"),
                 IconTheme.JabRefIcon.ATTACH_FILE.getSmallIcon());
         attachFileAction.setEnabled(!multiple);

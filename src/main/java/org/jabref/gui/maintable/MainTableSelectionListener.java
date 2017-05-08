@@ -320,7 +320,7 @@ public class MainTableSelectionListener implements ListEventListener<BibEntry>, 
 		            	System.out.println(s);
 		            	Path startingDir = Paths.get(System.getProperty("user.home"));
 		            	String results = StringEscapeUtils.escapeJava(s);
-		            	String pattern = s + ".pdf"; //"\\.(docx|pdf)"
+		            	String pattern = s + ".pdf"; // "(?i)" +"\\.(docx|pdf)"
 		            	Finder finder = new Finder(pattern);
 		            	try {
 							Files.walkFileTree(startingDir, finder);

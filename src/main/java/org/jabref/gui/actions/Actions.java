@@ -8,6 +8,7 @@ public class Actions {
     public static final String ABBREVIATE_ISO = "abbreviateIso";
     public static final String ABBREVIATE_MEDLINE = "abbreviateMedline";
     public static final String ADD_FILE_LINK = "addFileLink";
+    public static final String REMOVE_FILE_LINK = "removeFileLink"; //Adicionada opcao para remover links
     public static final String ADD_TO_GROUP = "addToGroup";
     public static final String AUTO_SET_FILE = "autoSetFile";
     public static final String BACK = "back";
