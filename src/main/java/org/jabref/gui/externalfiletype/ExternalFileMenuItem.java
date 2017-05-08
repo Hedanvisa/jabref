@@ -14,6 +14,7 @@ import org.jabref.gui.desktop.JabRefDesktop;
 import org.jabref.logic.l10n.Localization;
 import org.jabref.model.database.BibDatabaseContext;
 import org.jabref.model.entry.BibEntry;
+import org.jabref.model.entry.FieldName;
 import org.jabref.model.util.FileHelper;
 
 import org.apache.commons.logging.Log;
@@ -56,7 +57,9 @@ public class ExternalFileMenuItem extends JMenuItem implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         boolean success = openLink();
         if (!success) {
-            frame.output(Localization.lang("Unable to open link."));
+            frame.output(Localization.lang("Unable to open link Opa."));
+            entry.clearField(FieldName.FILE);
+            System.out.println("Tentando apagar link");
         }
     }
 

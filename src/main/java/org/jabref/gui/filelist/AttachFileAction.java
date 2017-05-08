@@ -32,6 +32,7 @@ public class AttachFileAction implements BaseAction {
             entry.getField(FieldName.FILE).ifPresent(model::setContent);
             model.addEntry(model.getRowCount(), flEntry);
             String newVal = model.getStringRepresentation();
+            System.out.println("AttachFile:" + newVal);
 
             UndoableFieldChange ce = new UndoableFieldChange(entry, FieldName.FILE,
                     entry.getField(FieldName.FILE).orElse(null), newVal);

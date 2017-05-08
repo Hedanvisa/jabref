@@ -42,6 +42,7 @@ import org.jabref.gui.menus.RightClickMenu;
 import org.jabref.gui.specialfields.SpecialFieldMenuAction;
 import org.jabref.gui.specialfields.SpecialFieldValueViewModel;
 import org.jabref.gui.specialfields.SpecialFieldViewModel;
+import org.jabref.gui.undo.UndoableFieldChange;
 import org.jabref.logic.l10n.Localization;
 import org.jabref.logic.util.OS;
 import org.jabref.model.entry.BibEntry;
@@ -53,6 +54,8 @@ import org.jabref.preferences.PreviewPreferences;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.event.ListEvent;
 import ca.odell.glazedlists.event.ListEventListener;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -311,16 +314,35 @@ public class MainTableSelectionListener implements ListEventListener<BibEntry>, 
                         break; // only open the first link
                     }
                     if(!entry.hasField(fieldName) && fieldName.equals(FieldName.FILE)) {
-                    	JOptionPane.showMessageDialog(null, entry.getTitle().toString());
-		            	System.out.println(entry.getTitle().toString());
+                    	panel.output(Localization.lang("Searching for file in this computer") + '.');
+                    	Optional<String> o = entry.getTitle();
+                    	String s = o.get();
+		            	System.out.println(s);
 		            	Path startingDir = Paths.get(System.getProperty("user.home"));
-		            	String pattern = entry.getTitle().toString() + ".pdf";
+		            	String results = StringEscapeUtils.escapeJava(s);
+		            	String pattern = s + ".pdf"; //"\\.(docx|pdf)"
 		            	Finder finder = new Finder(pattern);
 		            	try {
 							Files.walkFileTree(startingDir, finder);
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
+		            	if(!finder.getPaths().isEmpty()) {
+		            		JOptionPane.showMessageDialog(null, "The search has found a result for " + s + " in " + finder.getFirstPath());
+			            	FileListEntry flEntry = new FileListEntry("", "");
+			            	
+			            	flEntry.setLink(finder.getFirstPath());
+			            	FileListTableModel model = new FileListTableModel();
+			                entry.getField(FieldName.FILE).ifPresent(model::setContent);
+			                model.addEntry(model.getRowCount(), flEntry);
+			                String newVal = model.getStringRepresentation();
+			                System.out.println("MainTable" + newVal);
+	
+			                UndoableFieldChange ce = new UndoableFieldChange(entry, FieldName.FILE, entry.getField(FieldName.FILE).orElse(null), newVal);
+			                entry.setField(FieldName.FILE, newVal);
+		            	} else {
+		            		JOptionPane.showMessageDialog(null, "We didn't find any results for \"" + s +"\"");
+		            	}
                     }
                 }
             });
