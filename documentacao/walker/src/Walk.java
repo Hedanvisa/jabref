@@ -59,16 +59,17 @@ import java.nio.file.attribute.BasicFileAttributes;
            return CONTINUE;
        }
 	 
-     public static void main(String args[]) throws IOException {
+ 		public static void main(String args[]) throws IOException {
     	 
-         Path startingDir = Paths.get(System.getProperty("user.home"));
-        // System.out.println(System.getProperty("user.home"));
-         String pattern = "resumo.md";
-         Finder finder = new Finder(pattern);
-         Files.walkFileTree(startingDir, finder);
-         finder.done(); 
-     } //main
-	   }}
+			Path startingDir = Paths.get(System.getProperty("user.home"));
+			// System.out.println(System.getProperty("user.home"));
+			String pattern = "resumo.md";
+			Finder finder = new Finder(pattern);
+			Files.walkFileTree(startingDir, finder);
+			finder.done(); 
+     	} //main
+	}
+}
  
  
  

@@ -7,6 +7,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -14,6 +17,7 @@ import java.util.Optional;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -33,6 +37,7 @@ import org.jabref.gui.externalfiletype.ExternalFileMenuItem;
 import org.jabref.gui.externalfiletype.ExternalFileType;
 import org.jabref.gui.filelist.FileListEntry;
 import org.jabref.gui.filelist.FileListTableModel;
+import org.jabref.gui.filelist.Finder;
 import org.jabref.gui.menus.RightClickMenu;
 import org.jabref.gui.specialfields.SpecialFieldMenuAction;
 import org.jabref.gui.specialfields.SpecialFieldValueViewModel;
@@ -304,6 +309,18 @@ public class MainTableSelectionListener implements ListEventListener<BibEntry>, 
                             }
                         }
                         break; // only open the first link
+                    }
+                    if(!entry.hasField(fieldName) && fieldName.equals(FieldName.FILE)) {
+                    	JOptionPane.showMessageDialog(null, entry.getTitle().toString());
+		            	System.out.println(entry.getTitle().toString());
+		            	Path startingDir = Paths.get(System.getProperty("user.home"));
+		            	String pattern = entry.getTitle().toString() + ".pdf";
+		            	Finder finder = new Finder(pattern);
+		            	try {
+							Files.walkFileTree(startingDir, finder);
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
                     }
                 }
             });
