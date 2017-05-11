@@ -1,17 +1,18 @@
 package org.jabref.gui.filelist;
-import java.nio.file.*;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-
 import static java.nio.file.FileVisitResult.CONTINUE;
 
-import java.io.IOException;
-
 public class Finder extends SimpleFileVisitor<Path> {
-	
+
 	private final PathMatcher matcher;
     private int numMatches = 0;
     private List<Path> paths;
@@ -22,15 +23,15 @@ public class Finder extends SimpleFileVisitor<Path> {
 		paths = new ArrayList<>();
 		this.pat = pattern.toLowerCase();
 	}
-	
+
 	public List<Path> getPaths() {
 		return paths;
 	}
-	
+
 	public String getFirstPath() {
 		return paths.get(0).toString();
 	}
-	
+
 	// Compares the glob pattern against
     // the file or directory name.
     void find(Path file) {
