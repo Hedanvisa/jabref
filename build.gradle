@@ -144,6 +144,9 @@ dependencies {
     compile group: 'com.microsoft.azure', name: 'applicationinsights-core', version: '1.0.+'
     compile group: 'com.microsoft.azure', name: 'applicationinsights-logging-log4j2', version: '1.0.+'
 
+	//FuzzySearch 
+	compile 'me.xdrop:fuzzywuzzy:1.1.7'
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.7.22'
     testCompile 'com.github.tomakehurst:wiremock:2.6.0'

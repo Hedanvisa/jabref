@@ -4,6 +4,8 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 import java.io.IOException;
@@ -13,10 +15,12 @@ public class Finder extends SimpleFileVisitor<Path> {
 	private final PathMatcher matcher;
     private int numMatches = 0;
     private List<Path> paths;
+    private String pat;
 
 	public Finder(String pattern) {
 		matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
 		paths = new ArrayList<>();
+		this.pat = pattern.toLowerCase();
 	}
 	
 	public List<Path> getPaths() {
@@ -31,7 +35,8 @@ public class Finder extends SimpleFileVisitor<Path> {
     // the file or directory name.
     void find(Path file) {
         Path name = file.getFileName();
-        if (name != null && matcher.matches(name)) {
+       // if (name != null && matcher.matches(name)) {
+        if (name != null && (FuzzySearch.partialRatio(name.toString().toLowerCase(),this.pat) >= 75) && (FuzzySearch.ratio(name.toString().toLowerCase(),this.pat) >= 65)) {
             numMatches++;
             System.out.println(file);
             paths.add(file);
