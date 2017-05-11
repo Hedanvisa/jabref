@@ -8,7 +8,6 @@ public class Actions {
     public static final String ABBREVIATE_ISO = "abbreviateIso";
     public static final String ABBREVIATE_MEDLINE = "abbreviateMedline";
     public static final String ADD_FILE_LINK = "addFileLink";
-    public static final String REMOVE_FILE_LINK = "removeFileLink"; //Adicionada opcao para remover links
     public static final String ADD_TO_GROUP = "addToGroup";
     public static final String AUTO_SET_FILE = "autoSetFile";
     public static final String BACK = "back";
@@ -32,6 +31,7 @@ public class Actions {
     public static final String EDIT_PREAMBLE = "editPreamble";
     public static final String EDIT_STRINGS = "editStrings";
     public static final String EXPORT_TO_CLIPBOARD = "exportToClipboard";
+    public static final String FIND_EXTERNAL_FILE = "findExternalFile";
     public static final String FOCUS_TABLE = "focusTable";
     public static final String FORWARD = "forward";
     public static final String MAKE_KEY = "makeKey";
@@ -51,6 +51,7 @@ public class Actions {
     public static final String PREVIOUS_PREVIEW_STYLE = "previousPreviewStyle";
     public static final String PULL_CHANGES_FROM_SHARED_DATABASE = "pullChangesFromSharedDatabase";
     public static final String REDO = "redo";
+    public static final String REMOVE_FILE_LINK = "removeFileLink"; //Adicionada opcao para remover links
     public static final String REMOVE_FROM_GROUP = "removeFromGroup";
     public static final String REPLACE_ALL = "replaceAll";
     public static final String RESOLVE_DUPLICATE_KEYS = "resolveDuplicateKeys";

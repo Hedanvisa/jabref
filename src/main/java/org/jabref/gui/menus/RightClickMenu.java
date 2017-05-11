@@ -170,6 +170,10 @@ public class RightClickMenu extends JPopupMenu implements PopupMenuListener {
                 getFileIconForSelectedEntry(), KeyBinding.OPEN_FILE);
         openFileAction.setEnabled(isFieldSetForSelectedEntry(FieldName.FILE));
         add(openFileAction);
+        
+        GeneralAction findFileAction = new GeneralAction(Actions.FIND_EXTERNAL_FILE, Localization.lang("Find file"),
+                IconTheme.JabRefIcon.SEARCH.getSmallIcon());
+        add(findFileAction);
 
         GeneralAction openUrlAction = new GeneralAction(Actions.OPEN_URL, Localization.lang("Open URL or DOI"),
                 IconTheme.JabRefIcon.WWW.getSmallIcon(), KeyBinding.OPEN_URL_OR_DOI);

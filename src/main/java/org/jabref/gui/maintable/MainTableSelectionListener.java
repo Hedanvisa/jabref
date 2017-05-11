@@ -314,13 +314,14 @@ public class MainTableSelectionListener implements ListEventListener<BibEntry>, 
                         break; // only open the first link
                     }
                     if(!entry.hasField(fieldName) && fieldName.equals(FieldName.FILE)) {
+                    	
                     	panel.output(Localization.lang("Searching for file in this computer") + '.');
                     	Optional<String> o = entry.getTitle();
                     	String s = o.get();
 		            	System.out.println(s);
 		            	Path startingDir = Paths.get(System.getProperty("user.home"));
 		            	String results = StringEscapeUtils.escapeJava(s);
-		            	String pattern = s + ".pdf"; // "(?i)" +"\\.(docx|pdf)"
+		            	String pattern = s + ".{pdf,docx,doc,ppt,pptx,odt,epub,mobi}"; // "(?i)" + ".(docx|pdf)"
 		            	Finder finder = new Finder(pattern);
 		            	try {
 							Files.walkFileTree(startingDir, finder);
@@ -343,6 +344,7 @@ public class MainTableSelectionListener implements ListEventListener<BibEntry>, 
 		            	} else {
 		            		JOptionPane.showMessageDialog(null, "We didn't find any results for \"" + s +"\"");
 		            	}
+		            	
                     }
                 }
             });
