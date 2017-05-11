@@ -35,8 +35,8 @@ public class Finder extends SimpleFileVisitor<Path> {
     // the file or directory name.
     void find(Path file) {
         Path name = file.getFileName();
-       // if (name != null && matcher.matches(name)) {
-        if (name != null && (FuzzySearch.partialRatio(name.toString().toLowerCase(),this.pat) >= 75) && (FuzzySearch.ratio(name.toString().toLowerCase(),this.pat) >= 65)) {
+        if (name != null && matcher.matches(name)) {
+       //if (name != null && (FuzzySearch.partialRatio(name.toString().toLowerCase(),this.pat) >= 85) && (FuzzySearch.ratio(name.toString().toLowerCase(),this.pat) >= 76)) {
             numMatches++;
             System.out.println(file);
             paths.add(file);

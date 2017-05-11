@@ -34,7 +34,7 @@ public class FinderAction extends Thread implements BaseAction {
     	System.out.println(s);
     	Path startingDir = Paths.get(System.getProperty("user.home"));
     	String results = StringEscapeUtils.escapeJava(s);
-    	String pattern = s + ".pdf"; // "(?i)" + ".(docx|pdf)"
+    	String pattern = s + ".{pdf,docx,doc,ppt,pptx,odt,epub,mobi}"; // "(?i)" + ".(docx|pdf)"
     	Finder finder = new Finder(pattern);
     	try {
 			Files.walkFileTree(startingDir, finder);
