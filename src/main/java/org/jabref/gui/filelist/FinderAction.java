@@ -16,14 +16,12 @@ import java.util.Optional;
 
 public class FinderAction extends AbstractWorker {
 
-    private BasePanel panel;
-
     public FinderAction() {
     }
 
     @Override
     public void run() {
-        panel = JabRefGUI.getMainFrame().getCurrentBasePanel();
+    	BasePanel panel = JabRefGUI.getMainFrame().getCurrentBasePanel();
         BibEntry entry = panel.getSelectedEntries().get(0);
         panel.output(Localization.lang("Searching for file in this computer") + '.');
         Optional<String> o = entry.getTitle();
