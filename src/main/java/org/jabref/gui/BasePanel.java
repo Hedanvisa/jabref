@@ -525,6 +525,10 @@ public class BasePanel extends JPanel implements ClipboardOwner, FileUpdateListe
         actions.put(Actions.FIND_EXTERNAL_FILE, new FinderAction());
 
         actions.put(Actions.REMOVE_FILE_LINK, new DeattachFileAction(this));
+        
+        actions.put(Actions.SEARCH_CITATIONS, new CitationSearchAction(this));
+        
+        actions.put(Actions.SEARCH_IMPACT_FACTOR, new ImpactFactorSearchAction(this));
 
         actions.put(Actions.OPEN_EXTERNAL_FILE, (BaseAction) () -> openExternalFile());
 

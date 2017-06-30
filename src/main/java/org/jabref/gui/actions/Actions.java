@@ -34,6 +34,7 @@ public class Actions {
     public static final String FIND_EXTERNAL_FILE = "findExternalFile";
     public static final String FOCUS_TABLE = "focusTable";
     public static final String FORWARD = "forward";
+    public static final String GLOBAL_SEARCH = "globalSearch";
     public static final String MAKE_KEY = "makeKey";
     public static final String MANAGE_SELECTORS = "manageSelectors";
     public static final String MARK_ENTRIES = "markEntries";
@@ -60,7 +61,8 @@ public class Actions {
     public static final String SAVE_SELECTED_AS = "saveSelectedAs";
     public static final String SAVE_SELECTED_AS_PLAIN = "saveSelectedAsPlain";
     public static final String SEARCH = "search";
-    public static final String GLOBAL_SEARCH = "globalSearch";
+    public static final String SEARCH_CITATIONS = "searchCitations";
+    public static final String SEARCH_IMPACT_FACTOR = "searchImpactFactor";
     public static final String SELECT_ALL = "selectAll";
     public static final String SEND_AS_EMAIL = "sendAsEmail";
     public static final String TOGGLE_GROUPS = "toggleGroups";

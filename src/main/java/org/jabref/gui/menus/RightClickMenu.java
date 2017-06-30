@@ -175,10 +175,10 @@ public class RightClickMenu extends JPopupMenu implements PopupMenuListener {
                 IconTheme.JabRefIcon.SEARCH.getSmallIcon());
         add(findFileAction);
         
-        GeneralAction searchImpactFactorAction = new GeneralAction(Actions.FIND_EXTERNAL_FILE, Localization.lang("Search for impact factor"));
+        GeneralAction searchImpactFactorAction = new GeneralAction(Actions.SEARCH_IMPACT_FACTOR, Localization.lang("Search for impact factor"));
         add(searchImpactFactorAction);
         
-        GeneralAction searchCitationsAction = new GeneralAction(Actions.FIND_EXTERNAL_FILE, Localization.lang("Search for citations"));
+        GeneralAction searchCitationsAction = new GeneralAction(Actions.SEARCH_CITATIONS, Localization.lang("Search for citations"));
         add(searchCitationsAction);
 
         GeneralAction openUrlAction = new GeneralAction(Actions.OPEN_URL, Localization.lang("Open URL or DOI"),
