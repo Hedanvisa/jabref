@@ -1,6 +1,6 @@
 package org.jabref.gui;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import org.jabref.JabRefGUI;
@@ -9,7 +9,6 @@ import org.jabref.model.entry.BibEntry;
 import org.jabref.model.entry.FieldName;
 
 public class CitationSearchAction extends AbstractWorker {
-	private static int count = 0;
 	public CitationSearchAction() {
 	}
 
@@ -19,11 +18,25 @@ public class CitationSearchAction extends AbstractWorker {
 		List<BibEntry> listEntries = panel.getSelectedEntries();
 		
 		for(BibEntry e : listEntries) {
-			// TODO Auto-generated constructor for Daniels
-			String value = "Vitorio " + count;
-			e.setField(FieldName.CITATIONS, value);
-			count++;
-			System.out.println(count);
+			if(!e.getType().equals("proceedings")) {
+				FinderManager finder = null;
+				try {
+					finder = new FinderManager(e.getTitle().get().replaceAll("[\\{\\}]", ""));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				String value = finder.searchForCitations();
+				
+				if(!value.isEmpty()) {
+					e.setField(FieldName.CITATIONS, value);
+				} else {
+					value = "Unavailable";
+					e.setField(FieldName.CITATIONS, value);
+				}
+			}
+			else {
+				e.setField(FieldName.CITATIONS, "Not applicable");
+			}
 		}
 	}
 
